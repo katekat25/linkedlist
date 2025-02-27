@@ -8,6 +8,18 @@ class LinkedList {
         return this.size;
     }
 
+    get head() {
+        return this.head;
+    }
+
+    get tail() {
+        let current = this.head;
+        while (current.nextNode) {
+            current = current.nextNode;
+        }
+        return current;
+    }
+
     append(value) {
         let node = new Node(value);
 
