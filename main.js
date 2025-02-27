@@ -14,7 +14,7 @@ class LinkedList {
         let current;
 
         if (this.head == null) {
-            this.head == node;
+            this.head = node;
         } else {
             current = this.head;
             while (current.nextNode) {
@@ -25,11 +25,25 @@ class LinkedList {
         }
         this.size++;
     }
+
+    prepend(value) {
+        let node = new Node(value);
+
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            let oldHead = this.head;
+            this.head = node.
+            this.head.nextNode = oldHead;
+        }
+
+        this.size++
+    }
 }
 
 class Node {
-    constructor(value, nextNode) {
-        this.value = null;
-        this.nextNode = null;
+    constructor(value = null, nextNode = null) {
+        this.value = value;
+        this.nextNode = nextNode;
     }
 }
