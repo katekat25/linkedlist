@@ -69,7 +69,36 @@ class LinkedList {
         this.size++
     }
 
+    contains(value) {
+        for (let i = 0; i < this.size; i++) {
+            if (this.at(i) === value) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    find(value) {
+        for (let i = 0; i < this.size; i++) {
+            if (this.at(i) === value) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    toString() {
+        let string = "";
+        for (let i = 0; i < this.size; i++) {
+            string += " ( " + this.at(i).value + " ) ";
+            if (this.at(i).nextNode !== null) {
+                string += "->";
+            } else {
+                string += "-> null";
+            }
+        }
+        console.log(string);
+    }
 }
 
 class Node {
@@ -84,9 +113,11 @@ const list = new LinkedList();
 list.append("happy");
 list.append("funny");
 list.append("lucky");
+list.toString();
 console.log("Size:", list.getSize()); // Expected: 3
 console.log("Tail:", list.getTail().value); // Expected: "lucky"
 
 list.pop();
 console.log("Size after pop:", list.getSize()); // Expected: 2
 console.log("Tail after pop:", list.getTail().value); // Expected: "funny"
+list.toString();
