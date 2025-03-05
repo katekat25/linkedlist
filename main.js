@@ -12,7 +12,7 @@ class LinkedList {
         return this.head;
     }
 
-    tail() {
+    getTail() {
         let current = this.head;
         while (current.nextNode) {
             current = current.nextNode;
@@ -30,8 +30,11 @@ class LinkedList {
 
     pop() {
         if (this.head === null) return;
-        if (this.nead.nextNode === null) this.head = null;
-        
+        if (this.head.nextNode === null) {
+            this.head = null;
+            this.size--;
+            return;
+        } 
         let current = this.head;
         while (current.nextNode.nextNode) {
             current = current.nextNode;
@@ -48,12 +51,7 @@ class LinkedList {
         if (this.head == null) {
             this.head = node;
         } else {
-            current = this.head;
-            while (current.nextNode) {
-                current = current.nextNode;
-            }
-
-            current.nextNode = node;
+            this.getTail().nextNode = node;
         }
         this.size++;
     }
