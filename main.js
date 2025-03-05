@@ -4,20 +4,40 @@ class LinkedList {
         this.size = 0;
     }
 
-    get size() {
+    getSize() {
         return this.size;
     }
 
-    get head() {
+    getHead() {
         return this.head;
     }
 
-    get tail() {
+    tail() {
         let current = this.head;
         while (current.nextNode) {
             current = current.nextNode;
         }
         return current;
+    }
+
+    at(index) {
+        let current = this.head;
+        for (let i = 0; i < index; i++) {
+            current = current.nextNode;
+        }
+        return current;
+    }
+
+    pop() {
+        if (this.head === null) return;
+        if (this.nead.nextNode === null) this.head = null;
+        
+        let current = this.head;
+        while (current.nextNode.nextNode) {
+            current = current.nextNode;
+        }
+        current.nextNode = null;
+        this.size--;
     }
 
     append(value) {
@@ -45,7 +65,7 @@ class LinkedList {
             this.head = node;
         } else {
             let oldHead = this.head;
-            this.head = node.
+            this.head = node;
             this.head.nextNode = oldHead;
         }
 
@@ -59,3 +79,10 @@ class Node {
         this.nextNode = nextNode;
     }
 }
+
+const list = new LinkedList();
+
+list.append("happy");
+list.append("funny");
+list.append("lucky");
+console.log(list.getSize());
