@@ -1,6 +1,7 @@
 class LinkedList {
     constructor() {
         this.head = null;
+        this.tail = null;
         this.size = 0;
     }
 
@@ -13,11 +14,7 @@ class LinkedList {
     }
 
     getTail() {
-        let current = this.head;
-        while (current.nextNode) {
-            current = current.nextNode;
-        }
-        return current;
+        return this.tail;
     }
 
     at(index) {
@@ -40,19 +37,21 @@ class LinkedList {
             current = current.nextNode;
         }
         current.nextNode = null;
+        this.tail = current;
         this.size--;
     }
 
     append(value) {
         let node = new Node(value);
 
-        let current;
-
         if (this.head == null) {
             this.head = node;
+            this.tail = node;
         } else {
-            this.getTail().nextNode = node;
+            this.tail.nextNode = node;
+            this.tail = node;
         }
+
         this.size++;
     }
 
@@ -61,14 +60,16 @@ class LinkedList {
 
         if (this.head == null) {
             this.head = node;
+            this.tail = node;
         } else {
-            let oldHead = this.head;
+            node.nextNode = this.head;
             this.head = node;
-            this.head.nextNode = oldHead;
         }
 
         this.size++
     }
+
+
 }
 
 class Node {
@@ -83,4 +84,9 @@ const list = new LinkedList();
 list.append("happy");
 list.append("funny");
 list.append("lucky");
-console.log(list.getSize());
+console.log("Size:", list.getSize()); // Expected: 3
+console.log("Tail:", list.getTail().value); // Expected: "lucky"
+
+list.pop();
+console.log("Size after pop:", list.getSize()); // Expected: 2
+console.log("Tail after pop:", list.getTail().value); // Expected: "funny"
